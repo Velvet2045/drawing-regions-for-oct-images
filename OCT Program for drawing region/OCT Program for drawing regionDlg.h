@@ -3,7 +3,12 @@
 //
 
 #pragma once
+#include "StaticGNUPlot.h"
+#include <iostream>
+#include <opencv2/opencv.hpp>
 
+using namespace cv;
+using namespace std;
 
 // COCTProgramfordrawingregionDlg 대화 상자
 class COCTProgramfordrawingregionDlg : public CDialogEx
@@ -27,8 +32,13 @@ protected:
 
 	// 생성된 메시지 맵 함수
 	virtual BOOL OnInitDialog();
+	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
-	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void OnBnClickedBtnFindImage();
+	//afx_msg MouseCallback OnMouse(int event, int x, int y, int flags, void* userdata);
 	DECLARE_MESSAGE_MAP()
+public:
+	CStaticGNUPlot m_plot;
+	Mat CropImage(Mat imgInput, int* key);
 };
